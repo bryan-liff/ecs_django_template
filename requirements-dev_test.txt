@@ -1,0 +1,3 @@
+django-functest
+selenium
+factory_boy

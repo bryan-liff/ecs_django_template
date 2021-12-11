@@ -1,0 +1,48 @@
+version: '3.8'
+
+volumes:
+  python_packages:
+
+services:
+  db:
+    image: mysql:8.0.12 
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    env_file:
+      - .env
+    ports:
+      - '3306:3306'
+    volumes:
+      - './docker/mysql/data:/var/lib/mysql'
+      - './docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf'
+      - './docker/mysql/grant_db_user_permissions.sql:/docker-entrypoint-initdb.d/grant_db_user_permissions.sql'
+    cap_add: #revisit when above bug addressed
+      - SYS_NICE  # CAP_SYS_NICE
+
+  app:
+    image: does_app:dev_test
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+      target: dev_test
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+      - "python_packages:/usr/local/lib/python3.8/site-packages"
+    expose:
+      - 8000
+    depends_on:
+      - db
+    env_file:
+      - .env
+
+  nginx:
+    image: does_nginx:dev_test
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+      args:
+        TARGET_TAG: dev_test
+    ports:
+      - 80:80
+    depends_on:
+      - app

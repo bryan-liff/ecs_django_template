@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container page internal error">
+    <h1>{{ title }}</h1>
+    <p></p>
+    Unfortunately we encountered the following error(s):
+    <p></p>
+    <ul>
+      {% autoescape off %}
+        {% for error in errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      {% endautoescape %}
+    </ul>
+  </div>
+{% endblock %}

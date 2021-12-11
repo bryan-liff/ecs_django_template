@@ -1,0 +1,5 @@
+Django==3.1.7
+mysqlclient
+django-extensions
+pyyaml
+gunicorn

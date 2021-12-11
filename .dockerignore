@@ -1,0 +1,15 @@
+Dockerfile
+docker-compose.*
+**/.git
+**/*cache*
+*.md
+docker/app
+docker/mysql
+docker/nginx/Dockerfile
+sent_emails/
+*.env
+Makefile
+push_image.sh
+force_deploy_ecs.sh
+.dockerignore
+.gitignore

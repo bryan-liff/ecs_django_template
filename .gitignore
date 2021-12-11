@@ -1,0 +1,6 @@
+**/*.pyc
+**/*cache*
+**/*tmp*
+docker/mysql/data/
+sent_emails/
+.envs

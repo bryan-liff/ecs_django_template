@@ -3,26 +3,26 @@
 ## Initial setup
   Install docker-compose
 
-  `$ make env_reset`
+  `$ make env_reset`  
   `$ make`
 
   http://localhost/
 
   Shutdown:
-  Ctrl+C
+  Ctrl+C  
   `$ docker-compose down`
 
-  Run tests:
+  Run tests:  
   `$ make test`
 
 ## bash
 docker-compose run --rm [app|db] bash
 
-/app# ./manage.py --help
-/app# ./manage.py shell_plus
+/app# ./manage.py --help  
+/app# ./manage.py shell_plus  
 
 ## DB console
-docker-compose exec db mysql -uroot -p
+docker-compose exec db mysql -uroot -p  
 
 ### Migrations
 # when models changed
